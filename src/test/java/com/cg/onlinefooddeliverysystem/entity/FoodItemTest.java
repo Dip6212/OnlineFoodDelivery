@@ -1,6 +1,5 @@
 package com.cg.onlinefooddeliverysystem.entity;
 
-<<<<<<< HEAD
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
@@ -95,17 +94,3 @@ public class FoodItemTest {
         assertEquals("Noodles - $7.75", item.toString());
     }
 }
-=======
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-class FoodItemTest {
-
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
-
-}
->>>>>>> eb866dcd42427dd9d2930b888002567c73062b79

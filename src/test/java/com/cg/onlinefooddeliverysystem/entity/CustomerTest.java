@@ -1,6 +1,5 @@
 package com.cg.onlinefooddeliverysystem.entity;
 
-<<<<<<< HEAD
 import static org.junit.Assert.assertEquals;
 
 import java.io.ByteArrayOutputStream;
@@ -85,17 +84,3 @@ public class CustomerTest {
         System.setOut(originalOut);
     }
 }
-=======
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-class CustomerTest {
-
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
-
-}
->>>>>>> eb866dcd42427dd9d2930b888002567c73062b79

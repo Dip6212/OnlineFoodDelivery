@@ -1,6 +1,5 @@
 package com.cg.onlinefooddeliverysystem.service;
 
-<<<<<<< HEAD
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -132,17 +131,3 @@ class ManagerTest {
         assertEquals("Biswajit", manager.getName());
     }
 }
-=======
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-class ManagerTest {
-
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
-
-}
->>>>>>> eb866dcd42427dd9d2930b888002567c73062b79
