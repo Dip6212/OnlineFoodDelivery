@@ -1,11 +1,15 @@
-/*
+
+
+package com.cg.onlinefooddeliverysystem.entity;
+/**
  * This class represents a Customer in the Online Food Delivery System.
  * It extends the abstract User class and provides a concrete implementation
  * of the showProfile() method. Each Customer is assigned a unique ID 
  * using a static counter that increments with every new instance.
+ * @author Debanjana Bag
+ * @since 1.0
  */
 
-package com.cg.onlinefooddeliverysystem.entity;
 
 public class Customer extends User {
 

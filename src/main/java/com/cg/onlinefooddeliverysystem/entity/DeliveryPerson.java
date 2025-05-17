@@ -1,11 +1,14 @@
-/*
+
+
+package com.cg.onlinefooddeliverysystem.entity;
+/**
  * This class represents a Delivery Person in the Online Food Delivery System.
  * It extends the abstract User class and includes an availability status to track
  * whether the delivery person is available for delivery tasks.
  * Each DeliveryPerson is assigned a unique ID using a static counter.
+ * @author Debanjana Bag
+ * @since 1.0
  */
-
-package com.cg.onlinefooddeliverysystem.entity;
 
 public class DeliveryPerson extends User {
 

@@ -1,11 +1,14 @@
-/*
+
+
+package com.cg.onlinefooddeliverysystem.entity;
+/**
  * This class represents a Food Item in the Online Food Delivery System.
  * Each food item has a name and a price.
  * The class overrides equals() and hashCode() to allow case-insensitive comparison by name,
  * and also provides a custom toString() method for displaying item details.
+ * @author Debanjana Bag
+ * @since 1.0
  */
-
-package com.cg.onlinefooddeliverysystem.entity;
 
 public class FoodItem {
 

@@ -1,11 +1,14 @@
-/*
+
+
+package com.cg.onlinefooddeliverysystem.entity;
+/**
  * This abstract class defines a generic User entity in the Online Food Delivery System.
  * It contains common fields like 'id' and 'name', along with their getter and setter methods.
  * The class also declares an abstract method 'showProfile()', which must be implemented by subclasses.
  * This design allows for flexible and reusable user-related functionality across different user roles.
+ * @author Debanjana Bag
+ * @since 1.0
  */
-
-package com.cg.onlinefooddeliverysystem.entity;
 
 public abstract class User {
 
