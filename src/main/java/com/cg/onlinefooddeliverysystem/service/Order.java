@@ -15,14 +15,15 @@ import com.cg.onlinefooddeliverysystem.entity.FoodItem;
  * It manages the ordered items, assigns a delivery person if available, checks inventory, and maintains order status.
  * 
  * Usage:
- * <pre>
  * Map<String, Integer> request = new HashMap<>();
  * request.put("Pizza", 2);
  * Map<FoodItem, Integer> inventory = ...;
  * List<DeliveryPerson> deliveryPersons = ...;
  * Customer customer = ...;
  * Order order = new Order(customer, request, inventory, deliveryPersons);
- * </pre>
+ * 
+ * @author Aditi Saha 
+ * @since 1.0
  */
 
 public class Order {
