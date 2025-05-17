@@ -1,5 +1,5 @@
-package com.cg.onlinefooddelivery.ui;
+package com.cg.onlinefooddeliverysystem.ui;
 
-public class Main {
-
+ class Main {
+	
 }

@@ -1,5 +1,9 @@
+
+
 package com.cg.onlinefooddeliverysystem.entity;
 
-public class User {
 
+public abstract class User {
+
+    
 }
