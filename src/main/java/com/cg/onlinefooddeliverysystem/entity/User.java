@@ -12,32 +12,37 @@ package com.cg.onlinefooddeliverysystem.entity;
 
 public abstract class User {
 
-    // Unique identifier for the user
-    protected String id;
+	// Unique identifier for the user
+	protected String id;
 
-    // Name of the user
-    protected String name;
+	// Name of the user
+	protected String name;
 
-    // Returns the user's ID
-    public String getId() {
-        return id;
-    }
+	public User() {
+		setId(id);
+		setName(name);
+	}
 
-    // Sets the user's ID
-    public void setId(String id) {
-        this.id = id;
-    }
+	// Returns the user's ID
+	public String getId() {
+		return id;
+	}
 
-    // Returns the user's name
-    public String getName() {
-        return name;
-    }
+	// Sets the user's ID
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    // Sets the user's name
-    public void setName(String name) {
-        this.name = name;
-    }
+	// Returns the user's name
+	public String getName() {
+		return name;
+	}
 
-    // Abstract method to display the user's profile; must be implemented by subclasses
-    public abstract void showProfile();
+	// Sets the user's name
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	// Abstract method to display the user's profile; must be implemented by subclasses
+	public abstract void showProfile();
 }

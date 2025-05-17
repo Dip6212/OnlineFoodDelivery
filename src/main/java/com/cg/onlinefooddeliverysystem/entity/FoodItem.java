@@ -12,48 +12,58 @@ package com.cg.onlinefooddeliverysystem.entity;
 
 public class FoodItem {
 
-    // Name of the food item
-    private String name;
+	// Name of the food item
+	private String name;
 
-    // Price of the food item
-    private double price;
+	// Price of the food item
+	private double price;
 
-    // Constructor to initialize food item with name and price
-    public FoodItem(String name, double price) {
-        this.name = name;
-        this.price = price;
-    }
+	// Constructor to initialize food item with name and price
+	public FoodItem(String name, double price) {
+		setName(name);
+		setPrice(price);
+	}
 
-    // Returns the name of the food item
-    public String getName() {
-        return name;
-    }
+	// Returns the name of the food item
+	public String getName() {
+		return name;
+	}
 
-    // Returns the price of the food item
-    public double getPrice() {
-        return price;
-    }
+	private void setName(String name) {
+		this.name = name;
 
-    // Overrides equals() for case-insensitive comparison based on name
-    @Override
-    public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
-        FoodItem foodItem = (FoodItem) o;
-        return name.equalsIgnoreCase(foodItem.name);
-    }
+	}
 
-    // Overrides hashCode() to match the equals() logic
-    @Override
-    public int hashCode() {
-        return name.toLowerCase().hashCode();
-    }
+	// Returns the price of the food item
+	public double getPrice() {
+		return price;
+	}
 
-    // Returns a string representation of the food item
-    @Override
-    public String toString() {
-        return name + " - $" + price;
-    }
+	private void setPrice(double price) {
+		this.price = price;
+
+	}
+
+	// Overrides equals() for case-insensitive comparison based on name
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
+			return true;
+		if (o == null || getClass() != o.getClass())
+			return false;
+		FoodItem foodItem = (FoodItem) o;
+		return name.equalsIgnoreCase(foodItem.name);
+	}
+
+	// Overrides hashCode() to match the equals() logic
+	@Override
+	public int hashCode() {
+		return name.toLowerCase().hashCode();
+	}
+
+	// Returns a string representation of the food item
+	@Override
+	public String toString() {
+		return name + " - $" + price;
+	}
 }

@@ -13,19 +13,19 @@ package com.cg.onlinefooddeliverysystem.entity;
 
 public class Customer extends User {
 
-    // Static counter to generate unique customer IDs
-    private static int idCounter = 100;
+	// Static counter to generate unique customer IDs
+	private static int idCounter = 100;
 
-    // Constructor to initialize the customer with a name and auto-generated ID
-    public Customer(String name) {
-        super(); // Call to superclass constructor
-        this.setId(String.valueOf(++idCounter)); // Set a unique ID
-        this.setName(name); // Set the name
-    }
+	// Constructor to initialize the customer with a name and auto-generated ID
+	public Customer(String name) {
+		super(); // Call to superclass constructor
+		setId(String.valueOf(++idCounter)); // Set a unique ID
+		setName(name); // Set the name
+	}
 
-    // Implementation of the abstract method to display customer's profile
-    @Override
-    public void showProfile() {
-        System.out.println("Customer ID: " + getId() + ", Name: " + getName());
-    }
+	// Implementation of the abstract method to display customer's profile
+	@Override
+	public void showProfile() {
+		System.out.println("Customer ID: " + getId() + ", Name: " + getName());
+	}
 }

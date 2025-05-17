@@ -12,32 +12,32 @@ package com.cg.onlinefooddeliverysystem.entity;
 
 public class DeliveryPerson extends User {
 
-    // Static counter to generate unique delivery person IDs
-    private static int idCounter = 200;
+	// Static counter to generate unique delivery person IDs
+	private static int idCounter = 200;
 
-    // Boolean flag to indicate if the delivery person is currently available
-    private boolean available = true;
+	// Boolean flag to indicate if the delivery person is currently available
+	private boolean available = true;
 
-    // Constructor to initialize delivery person with a name and auto-generated ID
-    public DeliveryPerson(String name) {
-        super(); // Call to superclass constructor
-        this.setId(String.valueOf(++idCounter)); // Set a unique ID
-        this.setName(name); // Set the name
-    }
+	// Constructor to initialize delivery person with a name and auto-generated ID
+	public DeliveryPerson(String name) {
+		super(); // Call to superclass constructor
+		setId(String.valueOf(++idCounter)); // Set a unique ID
+		setName(name); // Set the name
+	}
 
-    // Returns the availability status of the delivery person
-    public boolean isAvailable() {
-        return available;
-    }
+	// Returns the availability status of the delivery person
+	public boolean isAvailable() {
+		return available;
+	}
 
-    // Sets the availability status of the delivery person
-    public void setAvailable(boolean available) {
-        this.available = available;
-    }
+	// Sets the availability status of the delivery person
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
 
-    // Implementation of the abstract method to display delivery person's profile
-    @Override
-    public void showProfile() {
-        System.out.println("Delivery Person ID: " + getId() + ", Name: " + getName() + ", Available: " + available);
-    }
+	// Implementation of the abstract method to display delivery person's profile
+	@Override
+	public void showProfile() {
+		System.out.println("Delivery Person ID: " + getId() + ", Name: " + getName() + ", Available: " + available);
+	}
 }
