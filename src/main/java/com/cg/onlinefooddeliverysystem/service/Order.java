@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.CG.Repository.Customer;
-import com.CG.Repository.DeliveryPerson;
-import com.CG.Repository.FoodItem;
+import com.cg.onlinefooddeliverysystem.entity.Customer;
+import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
+import com.cg.onlinefooddeliverysystem.entity.FoodItem;
+
 
 /**
  * The Order class represents an order placed by a customer for food items in the Online Food Delivery System.
@@ -23,6 +24,7 @@ import com.CG.Repository.FoodItem;
  * Order order = new Order(customer, request, inventory, deliveryPersons);
  * </pre>
  */
+
 public class Order {
 
     private Customer customer; 
