@@ -1,6 +1,5 @@
 package com.cg.onlinefooddeliverysystem.entity;
 
-<<<<<<< HEAD
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -80,17 +79,3 @@ class DeliveryPersonTest {
         assertTrue(available);
     }
 }
-=======
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.Test;
-
-class DeliveryPersonTest {
-
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
-
-}
->>>>>>> eb866dcd42427dd9d2930b888002567c73062b79
