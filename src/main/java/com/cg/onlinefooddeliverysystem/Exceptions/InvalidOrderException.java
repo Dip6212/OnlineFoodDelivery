@@ -1,4 +1,4 @@
-package com.cg.onlinefooddeliverysystem.service;
+package com.cg.onlinefooddeliverysystem.Exceptions;
 /**
  * Exception thrown to indicate that an order is invalid.
  * <p>

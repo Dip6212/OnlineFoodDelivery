@@ -8,6 +8,8 @@ import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
 import com.cg.onlinefooddeliverysystem.entity.FoodItem;
 import com.cg.onlinefooddeliverysystem.entity.User;
 
+import Annotations.RoleCheck;
+
 /**
  * The Manager class extends the User class and provides additional functionalities
  * specific to the "Manager" role in the Online Food Delivery System.

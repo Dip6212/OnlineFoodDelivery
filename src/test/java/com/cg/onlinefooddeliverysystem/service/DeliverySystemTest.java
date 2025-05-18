@@ -4,8 +4,9 @@ import com.cg.onlinefooddeliverysystem.entity.Customer;
 import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
 import com.cg.onlinefooddeliverysystem.entity.FoodItem;
 import com.cg.onlinefooddeliverysystem.service.DeliverySystem;
-import com.cg.onlinefooddeliverysystem.service.InvalidOrderException;
 import com.cg.onlinefooddeliverysystem.service.Order;
+
+import Exceptions.InvalidOrderException;
 
 import org.junit.Before;
 import org.junit.Test;

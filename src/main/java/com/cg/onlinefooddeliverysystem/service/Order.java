@@ -10,6 +10,8 @@ import com.cg.onlinefooddeliverysystem.entity.Customer;
 import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
 import com.cg.onlinefooddeliverysystem.entity.FoodItem;
 
+import Exceptions.InvalidOrderException;
+
 
 /**
  * The Order class represents an order placed by a customer for food items in the Online Food Delivery System.
