@@ -1,6 +1,5 @@
 
-
-package com.cg.onlinefooddeliverysystem.Annotations;
+package com.cg.onlinefooddeliverysystem.service;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -23,5 +22,4 @@ import java.lang.annotation.Target;
      * @return the name of the required role
      */
 	String role();
-
 }

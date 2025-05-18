@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import Exceptions.InvalidOrderException;
 import src.main.java.com.cg.onlinefooddeliverysystem.Customer;
 import src.main.java.com.cg.onlinefooddeliverysystem.DeliveryPerson;
 import src.main.java.com.cg.onlinefooddeliverysystem.FoodItem;
