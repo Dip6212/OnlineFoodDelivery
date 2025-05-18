@@ -65,16 +65,15 @@ public class FoodItem {
      * @param o the object to compare with
      * @return true if the objects are equal, false otherwise
      */
+// Overrides equals() for case-insensitive comparison based on name
 	@Override
 	public boolean equals(Object o) {
-		if (this == o)
-			return true;
-		if (o == null || getClass() != o.getClass())
-			return false;
-		FoodItem foodItem = (FoodItem) o;
-		return name.equalsIgnoreCase(foodItem.name);
+	    if (this == o) return true;
+	    if (o == null || getClass() != o.getClass()) return false;
+	    FoodItem foodItem = (FoodItem) o;
+	    return Double.compare(foodItem.price, price) == 0 &&
+	           name.equalsIgnoreCase(foodItem.name);
 	}
-
 	
 	/**
      * Overrides hashCode() to match the equals() logic using both name and price
@@ -82,7 +81,7 @@ public class FoodItem {
      */
 	@Override
 	public int hashCode() {
-		 return Objects.hash(name.toLowerCase(), price);
+		return Objects.hash(name.toLowerCase(),price);
 	}
 
 	
