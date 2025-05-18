@@ -1,10 +1,10 @@
 package com.cg.onlinefooddeliverysystem.service;
 
+import com.cg.onlinefooddeliverysystem.Exceptions.InvalidOrderException;
 import com.cg.onlinefooddeliverysystem.entity.Customer;
 import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
 import com.cg.onlinefooddeliverysystem.entity.FoodItem;
 import com.cg.onlinefooddeliverysystem.service.DeliverySystem;
-import com.cg.onlinefooddeliverysystem.service.InvalidOrderException;
 import com.cg.onlinefooddeliverysystem.service.Order;
 
 import org.junit.After;
