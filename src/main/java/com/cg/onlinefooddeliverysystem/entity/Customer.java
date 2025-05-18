@@ -2,10 +2,8 @@
 
 package com.cg.onlinefooddeliverysystem.entity;
 /**
- * This class represents a Customer in the Online Food Delivery System.
- * It extends the abstract User class and provides a concrete implementation
- * of the showProfile() method. Each Customer is assigned a unique ID 
- * using a static counter that increments with every new instance.
+* This class illustrates a Customer in the Online Food Delivery System.
+* It inherits the abstract User class and implements it.
  * @author Debanjana Bag
  * @since 1.0
  */
@@ -16,14 +14,18 @@ public class Customer extends User {
 	// Static counter to generate unique customer IDs
 	private static int idCounter = 100;
 
-	// Constructor to initialize the customer with a name and auto-generated ID
+	
+	/**
+     * Constructor to initialize customer with a name and auto-generated ID
+     * @param name of the customer
+     */
 	public Customer(String name) {
 		super(); // Call to superclass constructor
 		setId(String.valueOf(++idCounter)); // Set a unique ID
-		setName(name); // Set the name
+		setName(name); // Set name
 	}
 
-	// Implementation of the abstract method to display customer's profile
+	// Implementation of abstract method to display customer's profile
 	@Override
 	public void showProfile() {
 		System.out.println("Customer ID: " + getId() + ", Name: " + getName());

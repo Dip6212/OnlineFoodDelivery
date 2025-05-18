@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 
 package com.cg.onlinefooddeliverysystem.Annotations;
 
@@ -23,10 +23,5 @@ import java.lang.annotation.Target;
      * @return the name of the required role
      */
 	String role();
-=======
-package Annotations;
 
-public @interface RoleCheck {
-
->>>>>>> ca7aa7cad742939b35632f14a4f0dfeb4acc83da
 }
