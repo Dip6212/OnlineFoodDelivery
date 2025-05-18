@@ -1,5 +1,4 @@
 package com.cg.onlinefooddeliverysystem.entity;
-
 /**
  * This class models a Delivery Person in the Online Food Delivery System.
  * It inherits from the abstract User class and adds an availability status to monitor
@@ -22,9 +21,8 @@ public class DeliveryPerson extends User {
      * @param name of the delivery person
      */
 	public DeliveryPerson(String name) {
-		super(); // Call to superclass constructor
-		setId(String.valueOf(++idCounter)); // Set a unique ID
-		setName(name); // Set name
+		super(String.valueOf(++idCounter),name); // Call to superclass constructor
+
 	}
 
 	
@@ -50,5 +48,4 @@ public class DeliveryPerson extends User {
 	public void showProfile() {
 		System.out.println("Delivery Person ID: " + getId() + ", Name: " + getName() + ", Available: " + available);
 	}
-
 }
