@@ -1,5 +1,5 @@
 
-package com.cg.onlinefooddeliverysystem.service;
+package com.cg.onlinefooddeliverysystem.Annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

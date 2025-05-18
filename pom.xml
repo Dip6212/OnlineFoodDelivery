@@ -10,5 +10,10 @@
     <artifactId>commons-io</artifactId>
     <version>2.14.0</version>
 </dependency>
+  	<dependency>
+  		<groupId>onlinefooddeliveryjava8</groupId>
+  		<artifactId>com.cg.onlinefooddelivery-java8</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
   </dependencies>
 </project>

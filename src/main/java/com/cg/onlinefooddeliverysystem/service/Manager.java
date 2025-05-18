@@ -8,6 +8,8 @@ import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
 import com.cg.onlinefooddeliverysystem.entity.FoodItem;
 import com.cg.onlinefooddeliverysystem.entity.User;
 
+import Annotations.RoleCheck;
+
 /**
   Manager class extends User and lets managers manage delivery staff and inventory
  * @author Biswajit Adhikary

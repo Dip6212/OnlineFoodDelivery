@@ -10,6 +10,8 @@ import com.cg.onlinefooddeliverysystem.entity.Customer;
 import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
 import com.cg.onlinefooddeliverysystem.entity.FoodItem;
 
+import Exceptions.InvalidOrderException;
+
 
 /**
  The order class handles placing an order, checking item stock, and assigning a delivery person.
