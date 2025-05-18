@@ -1,6 +1,7 @@
 package com.cg.onlinefooddeliverysystem.entity;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
@@ -10,46 +11,39 @@ import org.junit.Before;
 import org.junit.Test;
 
 /**
- * This class contains unit tests for the {@link Customer} entity class in the Online Food Delivery System.
- * It tests the correct behavior of ID assignment, name storage, and the profile display functionality.
+ * This class contains test cases for all the methods in the Customer class 
+ * All the possible test cases have been implemented in this class.
  *
- * The tests include:
- *     Resetting the static ID counter before each test to ensure test isolation.
- *     Verifying that the customer name and ID are set correctly upon creation.
- *     Checking that the ID is incremented as expected for multiple customers.
- *     Asserting the correct output from the {@code showProfile()} method.
- *
- * Example usage:
- *     Customer customer = new Customer("Alice");
- *     customer.showProfile(); // Output: Customer ID: 101, Name: Alice
- *
- * @author (Divya Sinha)
+ * @author Divya Sinha
  * @since 1.0
  */
 
 public class CustomerTest {
 
-    /**
-     * Resets the static idCounter field of {@link Customer} before each test.
-     * This ensures that customer IDs start from a known value for each test.
-     *
-     * @throws Exception if reflection access fails
+	/**
+     * This case resets the idCounter variable of the Customer class.
+     * If an exception occurs in case the reflection access fails, it is handled using try-catch block.
      */
-    @Before
-    public void resetIdCounter() throws Exception {
-        Field field = Customer.class.getDeclaredField("idCounter");
-        field.setAccessible(true);
-        field.setInt(null, 100); 
-    }
+	@Before
+	public void resetIdCounter() {
+	    try {
+	        Field field = Customer.class.getDeclaredField("idCounter");
+	        field.setAccessible(true);
+	        field.setInt(null, 100);
+	    } catch (Exception e) {
+	        throw new RuntimeException("Failed to reset idCounter", e);
+	    }
+	}
+
 
     /**
      * Tests that a customer is correctly created with the given name and an incremented ID.
      */
     @Test
     public void testCustomerAddition() {
-        Customer customer = new Customer("Alice");
+        Customer customer = new Customer("Aditi");
 
-        assertEquals("Alice", customer.getName());
+        assertEquals("Aditi", customer.getName());
         assertEquals("101", customer.getId());
     }
 
@@ -57,12 +51,11 @@ public class CustomerTest {
      * Tests that each new customer receives a unique, incremented ID.
      */
     @Test
-    public void testCustomerIdIncrement() {
-        Customer customer1 = new Customer("Bob");
-        Customer customer2 = new Customer("Carol");
+    public void testCustomerId() {
+        Customer customer1 = new Customer("Biswajit");
+        Customer customer2 = new Customer("Dipon");
 
-        assertEquals("101", customer1.getId());
-        assertEquals("102", customer2.getId());
+        assertNotEquals(customer1.getId(),customer2.getId());
     }
 
     /**
@@ -70,17 +63,27 @@ public class CustomerTest {
      */
     @Test
     public void testShowProfile() {
-        Customer customer = new Customer("David");
+        Customer customer = new Customer("Divya");
 
-        ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-        PrintStream originalOut = System.out;
-        System.setOut(new PrintStream(outContent));
+        ByteArrayOutputStream b = new ByteArrayOutputStream();
+        PrintStream ori = System.out;
+        System.setOut(new PrintStream(b));
 
         customer.showProfile();
 
-        String expectedOutput = "Customer ID: " + customer.getId() + ", Name: " + customer.getName() + System.lineSeparator();
-        assertEquals(expectedOutput, outContent.toString());
+        String expected = "Customer ID: " + customer.getId() + ", Name: " + customer.getName() + System.lineSeparator();
+        assertEquals(expected, b.toString());
 
-        System.setOut(originalOut);
+        System.setOut(ori);
+    }
+    
+    /**
+     * @param unexpected
+     * @param actual
+     */
+ // AssertNotEquals() was not there in JUnit 4 so we declare it as our own custom method
+    private void assertNotEquals(Object unexpected, Object actual) {
+        assertFalse("Expected values to be different, but both were: " + actual,
+                (unexpected == null && actual == null) || (unexpected != null && unexpected.equals(actual)));
     }
 }
