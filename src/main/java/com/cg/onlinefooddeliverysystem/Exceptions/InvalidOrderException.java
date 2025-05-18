@@ -1,4 +1,5 @@
 
+
 package com.cg.onlinefooddeliverysystem.Exceptions;
 
 /**
@@ -27,4 +28,6 @@ public class InvalidOrderException extends RuntimeException {
     public String getmessage() {
         return message;
     }
+
 }
+

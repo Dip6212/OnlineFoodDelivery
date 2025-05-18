@@ -1,6 +1,5 @@
-
-
 package com.cg.onlinefooddeliverysystem.entity;
+
 /**
 * This class illustrates a Customer in the Online Food Delivery System.
 * It inherits the abstract User class and implements it.
@@ -30,4 +29,5 @@ public class Customer extends User {
 	public void showProfile() {
 		System.out.println("Customer ID: " + getId() + ", Name: " + getName());
 	}
+
 }

@@ -17,6 +17,7 @@ import Exceptions.InvalidOrderException;
  */
 
 public class Main {
+
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -167,6 +168,7 @@ public class Main {
         }
         return input;
     }
+
 }
 
 
