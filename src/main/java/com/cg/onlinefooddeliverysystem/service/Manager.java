@@ -1,4 +1,3 @@
-
 package com.cg.onlinefooddeliverysystem.service;
 import java.util.Iterator;
 import java.util.List;
@@ -6,14 +5,14 @@ import java.util.Map;
 
 import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
 import com.cg.onlinefooddeliverysystem.entity.FoodItem;
-
-import Annotations.RoleCheck;
+import com.cg.onlinefooddeliverysystem.entity.User;
 
 /**
  * The Manager class extends the User class and acts as a manager it can remove
  * delivery personnel, restock items, and add new items to the inventory. Also
  * is protected with a role check annotation to ensure only authorized users are
  * granted access.
+ * 
  * @author Biswajit Adhikary
  * @since 1.0
  */
@@ -29,7 +28,7 @@ public class Manager extends User {
 	 * @param name the name of the manager
 	 */
 	public Manager(String id, String name) {
-		super();
+		super(id, name);
 	}
 
 	/**
@@ -56,7 +55,7 @@ public class Manager extends User {
 			}
 			Iterator<DeliveryPerson> it = list.iterator();
 			while (it.hasNext()) {
-				if (it.next().getId().equals(id)) {
+				if (it.next().getName().equals(name)) {
 					it.remove();
 					System.out.println("Delivery Person removed.");
 					return;
@@ -116,4 +115,3 @@ public class Manager extends User {
 		System.out.println("Manager ID: " + getId() + ", Name: " + getName());
 	}
 }
-
