@@ -26,7 +26,7 @@ public class Manager extends User {
 	 * @param name the name of the manager
 	 */
 	public Manager(String id, String name) {
-		super(id, name);
+		super();
 	}
 
 	/**
