@@ -1,81 +1,107 @@
 package com.cg.onlinefooddeliverysystem.entity;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import java.util.List;
-
+import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 
-import com.cg.onlinefooddeliverysystem.service.DeliverySystem;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.lang.reflect.Field;
+
+import static org.junit.Assert.*;
 
 /**
- * Unit tests for the {@link DeliveryPerson} class in the Online Food Delivery System.
- * This class verifies the correct assignment of delivery person details and availability status.
- * Tests include:
- *   Correct profile information (ID and name) of a delivery person.
- *   The initial availability state of the delivery person.
- *   Setting and checking the availability status.
- *
- * Example usage:
- *     DeliveryPerson deliveryPerson = new DeliveryPerson("Rohan");
- *     assertEquals("201", deliveryPerson.getId());
- *     assertEquals("Rohan", deliveryPerson.getName());
- *
- * @author (Divya Sinha)
- * @since 1.0
+ * All the methods of DeliveryPerson class are being tested here.
+ * 
+ * @author Divya Sinha
+ * @since  1.0
  */
-class DeliveryPersonTest {
-    DeliverySystem system;
-    DeliveryPerson deliveryPerson;
-    List<DeliveryPerson> list;
-    boolean available;
+public class DeliveryPersonTest {
 
     /**
-     * Sets up the test environment before each test.
-     * Initializes the delivery system and a delivery person.
+     * This case resets the idCounter variable of the DeliveryPerson class.
+     * If an exception occurs in case the reflection access fails, it is handled using try-catch block.
      */
-    @BeforeEach
-    void setUp() {
-        system = new DeliverySystem();
-        deliveryPerson = new DeliveryPerson("Rohan");
-        available = true;
+    @Before
+    public void resetIdCounter() {
+    	Field field;
+    	try {
+        field = DeliveryPerson.class.getDeclaredField("idCounter");
+        field.setAccessible(true);
+        field.setInt(null, 200);
+    	} catch(Exception e) {
+    		e.getMessage();
+    	}
     }
 
     /**
-     * Tests that the delivery person's profile information is correctly initialized.
+     * This case tests that a DeliveryPerson object is created with the correct name,
+     * correct incremented ID, and the isAvailable() returns true.
      */
     @Test
-    void testshowProfile() {
-        assertEquals("201", deliveryPerson.getId());
-        assertEquals("Rohan", deliveryPerson.getName());
+    public void testDeliveryPersonCreation() {
+        DeliveryPerson dp = new DeliveryPerson("Sumon");
+
+        assertEquals("Sumon", dp.getName());
+        assertNotNull(dp.getId());
+        assertTrue(dp.getId().matches("\\d+"));
+        assertTrue(dp.isAvailable());
     }
 
     /**
-     * Tests that the initial availability is true.
+     * This case tests that the availability status of the delivery person can be changed from true to false.
      */
     @Test
-    void testIsAvailableTrue() {
-        assertTrue(available);
+    public void testAvailabilitySetter() {
+        DeliveryPerson dp = new DeliveryPerson("Ujjaini");
+        dp.setAvailable(false);
+
+        assertFalse(dp.isAvailable());
     }
 
     /**
-     * Tests that the initial availability is false.
-     */
-    @Disabled
-    void testIsAvailableFalse() {
-        assertFalse(available);
-    }
-    
-
-    /**
-     * Tests setting delivery person as available.
+     * This case tests that each Delivery Person receives a unique ID.
      */
     @Test
-    void testSetAvailable() {
-        assertTrue(available);
+    public void testDeliveryPersonId() {
+        DeliveryPerson dp1 = new DeliveryPerson("Yash");
+        DeliveryPerson dp2 = new DeliveryPerson("Dipon");
+
+        assertNotEquals(dp1.getId(), dp2.getId());
+    }
+
+    /**
+     * Tests the output of the showProfile() method to ensure
+     * it displays correct ID, name, and availability status.
+     */
+    @Test
+    public void testShowProfile() {
+        DeliveryPerson dp = new DeliveryPerson("Arjun");
+        dp.setAvailable(false);
+
+        ByteArrayOutputStream b = new ByteArrayOutputStream();
+        PrintStream ori = System.out;
+        System.setOut(new PrintStream(b));
+
+        try {
+            dp.showProfile();
+        } finally {
+            System.setOut(ori);
+        }
+
+        String output = b.toString().trim();
+        assertTrue(output.contains("Delivery Person ID: " + dp.getId()));
+        assertTrue(output.contains("Name: " + dp.getName()));
+        assertTrue(output.contains("Available: false"));
+    }
+
+    /**
+     * @param unexpected 
+     * @param actual     
+     */
+ // AssertNotEquals() was not there in JUnit 4 so we declare it as our own custom method
+    private void assertNotEquals(Object unexpected, Object actual) {
+        assertFalse("Expected different values but got: " + actual,
+                (unexpected == null && actual == null) ||
+                (unexpected != null && unexpected.equals(actual)));
     }
 }

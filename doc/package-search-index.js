@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.cg.onlinefooddeliverysystem.entity"},{"l":"com.cg.onlinefooddeliverysystem.service"},{"l":"com.cg.onlinefooddeliverysystem.ui"}];updateSearchResults();
