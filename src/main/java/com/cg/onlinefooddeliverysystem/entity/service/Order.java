@@ -10,11 +10,19 @@ import com.cg.onlinefooddeliverysystem.entity.Customer;
 import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
 import com.cg.onlinefooddeliverysystem.entity.FoodItem;
 
-import Exceptions.InvalidOrderException;
-
 
 /**
- The order class handles placing an order, checking item stock, and assigning a delivery person.
+ * The Order class represents an order placed by a customer for food items in the Online Food Delivery System.
+ * It manages the ordered items, assigns a delivery person if available, checks inventory, and maintains order status.
+ * 
+ * Usage:
+ * Map<String, Integer> request = new HashMap<>();
+ * request.put("Pizza", 2);
+ * Map<FoodItem, Integer> inventory = ...;
+ * List<DeliveryPerson> deliveryPersons = ...;
+ * Customer customer = ...;
+ * Order order = new Order(customer, request, inventory, deliveryPersons);
+ * 
  * @author Aditi Saha 
  * @since 1.0
  */
@@ -26,9 +34,16 @@ public class Order {
     private Map<FoodItem, Integer> itemsOrdered; 
     private String status;
 
-    
- // Creates an Order - checks items, reduces stock, and assigns a delivery person. 
-    
+    /**
+     * Constructs an Order object with the specified customer, requested items, inventory, and delivery persons.
+     * Validates item existence and stock, deducts from inventory, and assigns an available delivery person.
+     * 
+     * @param customer The customer placing the order.
+     * @param request A map of food item names to quantities requested.
+     * @param inventory A map of FoodItem to available quantity.
+     * @param deliveryPersons A list of potential delivery persons.
+     * @throws InvalidOrderException if an item is not found, insufficient stock, or no delivery person is available.
+     */
     public Order(Customer customer, Map<String, Integer> request, Map<FoodItem, Integer> inventory,
             List<DeliveryPerson> deliveryPersons) throws InvalidOrderException {
         this.customer = customer; 
@@ -67,14 +82,19 @@ public class Order {
         this.status = "In progress"; 
     }
 
-    
-    //Completes the current order, updates the status, and marks the delivery person as available.
+    /**
+     * Completes the current order, updates the status, and marks the delivery person as available.
+     */
     public void completeOrder() {
         this.status = "Completed";
         this.deliveryPerson.setAvailable(true);
     }
 
-    //Returns the summary of the order details
+    /**
+     * Returns the details of the order, including customer, items, delivery person, and status.
+     * 
+     * @return A string describing the order details.
+     */
     public String orderDetails() {
         StringBuilder sb = new StringBuilder();
         sb.append("Order for ").append(customer.getName()).append("\n");
@@ -85,7 +105,11 @@ public class Order {
         return sb.toString();
     }
 
-    //Returns the current order status
+    /**
+     * Returns the current status of the order.
+     * 
+     * @return The order status.
+     */
     public String getStatus() {
         return status;
     }

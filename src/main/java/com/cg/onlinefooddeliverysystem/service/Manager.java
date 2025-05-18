@@ -14,7 +14,6 @@ import Annotations.RoleCheck;
  * delivery personnel, restock items, and add new items to the inventory. Also
  * is protected with a role check annotation to ensure only authorized users are
  * granted access.
- * 
  * @author Biswajit Adhikary
  * @since 1.0
  */
@@ -117,3 +116,4 @@ public class Manager extends User {
 		System.out.println("Manager ID: " + getId() + ", Name: " + getName());
 	}
 }
+
