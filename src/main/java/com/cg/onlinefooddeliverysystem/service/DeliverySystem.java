@@ -1,6 +1,5 @@
 package com.cg.onlinefooddeliverysystem.service;
 
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -86,7 +85,6 @@ public class DeliverySystem {
 		return order;
 	}
 
-<<<<<<< HEAD
 //  Displays the profile of all registered delivery persons
 	public void showAllDeliveryPersons() {
 		for (DeliveryPerson d : deliveryPersons) {
@@ -94,15 +92,4 @@ public class DeliverySystem {
 		}
 	}
 }
-=======
-    /**
-     * Displays the profile of all registered delivery personnel.
-     */
-    public void showAllDeliveryPersons() {
-        for (DeliveryPerson d : deliveryPersons) {
-            d.showProfile();
-        }
-    }
-}
 
->>>>>>> 0ca617c7ae0f17fff42f02227ad8ec212021eead
