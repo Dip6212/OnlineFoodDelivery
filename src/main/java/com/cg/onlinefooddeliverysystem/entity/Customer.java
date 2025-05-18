@@ -19,9 +19,8 @@ public class Customer extends User {
      * @param name of the customer
      */
 	public Customer(String name) {
-		super(); // Call to superclass constructor
-		setId(String.valueOf(++idCounter)); // Set a unique ID
-		setName(name); // Set name
+		super(String.valueOf(++idCounter),name); // Call to superclass constructor
+		
 	}
 
 	// Implementation of abstract method to display customer's profile
