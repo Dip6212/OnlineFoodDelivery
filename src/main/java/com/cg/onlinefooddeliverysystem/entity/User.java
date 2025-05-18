@@ -1,6 +1,6 @@
+
+
 package com.cg.onlinefooddeliverysystem.entity;
-<<<<<<< HEAD
-=======
 /**
 *This abstract class declares a User in the Online Food Delivery System.
 * It has fields such as 'id' and 'name' and their setter and getter.
@@ -8,19 +8,16 @@ package com.cg.onlinefooddeliverysystem.entity;
  * @author Debanjana Bag
  * @since 1.0
  */
->>>>>>> driver
 
-public class User {
+public abstract class User {
 
-<<<<<<< HEAD
-=======
 	// Unique identifier for user
 	protected String id;
 
 	// Name of user
 	protected String name;
 
-	public User() {
+	public User(String id, String name) {
 		setId(id);
 		setName(name);
 	}
@@ -63,5 +60,4 @@ public class User {
 
 	// Abstract method to display the user's profile
 	public abstract void showProfile();
->>>>>>> driver
 }
