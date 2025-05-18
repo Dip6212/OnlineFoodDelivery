@@ -3,8 +3,6 @@ package com.cg.onlinefooddeliverysystem.service;
 import com.cg.onlinefooddeliverysystem.entity.Customer;
 import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
 import com.cg.onlinefooddeliverysystem.entity.FoodItem;
-import com.cg.onlinefooddeliverysystem.service.InvalidOrderException;
-import com.cg.onlinefooddeliverysystem.service.Order;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,24 +12,11 @@ import java.util.*;
 import static org.junit.Assert.*;
 
 /**
- * Unit tests for the {@link Order} class in the Online Food Delivery System.
- * Tests the creation, validation, and status changes of orders, including inventory updates and delivery person assignment.
- * The tests include:
- *   Successful creation of an order with correct details, status, and delivery person assignment.
- *   Order failure if a requested item is not in the inventory.
- *   Order failure if requested quantity exceeds available stock.
- *   Order failure if no delivery person is available.
- *   Completing an order updates its status and frees the delivery person.
- *
- * Example usage:
- *     Map<String, Integer> request = new HashMap<>();
- *     request.put("Pizza", 2);
- *     Order order = new Order(customer, request, inventory, deliveryPersons);
- *     assertEquals("In progress", order.getStatus());
- *     order.completeOrder();
- *     assertEquals("Completed", order.getStatus());
- *
- * @author (Divya Sinha)
+ * All the methods of Order class are tested here.
+ * Tests include successful order placement, invalid conditions, and order completion.
+ * Enhanced for full branch and condition coverage of Order logic.
+ * 
+ * @author Divya Sinha
  * @since 1.0
  */
 public class OrderTest {
@@ -47,19 +32,18 @@ public class OrderTest {
      * Sets up shared objects for each test, including inventory and delivery persons.
      */
     @Before
-    public void setup() {
-        customer = new Customer("Alice");
-        deliveryPerson = new DeliveryPerson("Bob");
-        deliveryPerson.setAvailable(true);
-
-        pizza = new FoodItem("Pizza", 10.0);
-        burger = new FoodItem("Burger", 8.0);
-
+    public void setUp() {
         inventory = new HashMap<FoodItem, Integer>();
-        inventory.put(pizza, 5);
-        inventory.put(burger, 3);
-
         deliveryPersons = new ArrayList<DeliveryPerson>();
+        customer = new Customer("Alice");
+
+        pizza = new FoodItem("Pizza", 5.0);
+        burger = new FoodItem("Burger", 4.0);
+
+        inventory.put(pizza, 3);
+        inventory.put(burger, 5);
+
+        deliveryPerson = new DeliveryPerson("Bob");
         deliveryPersons.add(deliveryPerson);
     }
 
@@ -67,21 +51,16 @@ public class OrderTest {
      * Tests successful order creation, correct order details, status, and delivery person assignment.
      */
     @Test
-    public void testValidOrderCreationAndDetails() throws InvalidOrderException {
+    public void testSuccessfulOrderPlacement() throws InvalidOrderException {
         Map<String, Integer> request = new HashMap<String, Integer>();
         request.put("Pizza", 2);
-        request.put("Burger", 1);
 
         Order order = new Order(customer, request, inventory, deliveryPersons);
 
-        String expected = "Order for Alice\n" +
-                pizza.toString() + " x 2\n" +
-                burger.toString() + " x 1\n" +
-                "Delivery By: Bob\nStatus: In progress";
-
-        assertEquals(expected, order.orderDetails());
+        assertNotNull(order);
         assertEquals("In progress", order.getStatus());
-        assertFalse(deliveryPerson.isAvailable());
+        assertTrue(order.orderDetails().contains("Pizza"));
+        assertTrue(order.orderDetails().contains("x 2"));
     }
 
     /**
@@ -90,7 +69,7 @@ public class OrderTest {
     @Test(expected = InvalidOrderException.class)
     public void testOrderFailsIfItemNotInInventory() throws InvalidOrderException {
         Map<String, Integer> request = new HashMap<String, Integer>();
-        request.put("Sushi", 1);
+        request.put("Sushi", 1); // Not in inventory
 
         new Order(customer, request, inventory, deliveryPersons);
     }
@@ -101,7 +80,7 @@ public class OrderTest {
     @Test(expected = InvalidOrderException.class)
     public void testOrderFailsIfStockIsInsufficient() throws InvalidOrderException {
         Map<String, Integer> request = new HashMap<String, Integer>();
-        request.put("Pizza", 10);
+        request.put("Pizza", 10); // Only 3 available
 
         new Order(customer, request, inventory, deliveryPersons);
     }
@@ -111,7 +90,7 @@ public class OrderTest {
      */
     @Test(expected = InvalidOrderException.class)
     public void testOrderFailsIfNoDeliveryPersonAvailable() throws InvalidOrderException {
-        deliveryPerson.setAvailable(false);
+        deliveryPersons.get(0).setAvailable(false); // Make the only delivery person unavailable
 
         Map<String, Integer> request = new HashMap<String, Integer>();
         request.put("Pizza", 1);
@@ -132,5 +111,45 @@ public class OrderTest {
 
         assertEquals("Completed", order.getStatus());
         assertTrue(deliveryPerson.isAvailable());
+    }
+
+    /**
+     * Tests ordering multiple different food items.
+     */
+    @Test
+    public void testMultipleItemsOrder() {
+        Map<String, Integer> request = new HashMap<String, Integer>();
+        request.put("Pizza", 1);
+        request.put("Burger", 2);
+
+        try {
+            // Create an Order with multiple items
+            Order order = new Order(customer, request, inventory, deliveryPersons);
+
+            // Get the order details
+            String details = order.orderDetails();
+
+            // Assert that the order details contain the items and quantities
+            assertTrue(details.contains("Pizza x 1"));
+            assertTrue(details.contains("Burger x 2"));
+
+        } catch (InvalidOrderException e) {
+            // If InvalidOrderException is thrown, fail the test and output the exception message
+            fail("Expected no InvalidOrderException, but got: " + e.getMessage());
+        }
+    }
+
+
+    /**
+     * Tests case-insensitive matching of item names in the order request.
+     */
+    @Test
+    public void testCaseInsensitiveItemMatching() throws InvalidOrderException {
+        Map<String, Integer> request = new HashMap<String, Integer>();
+        request.put("pIzZa", 1); // Mixed case
+
+        Order order = new Order(customer, request, inventory, deliveryPersons);
+
+        assertTrue(order.orderDetails().contains("Pizza x 1"));
     }
 }

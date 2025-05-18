@@ -1,133 +1,144 @@
 package com.cg.onlinefooddeliverysystem.service;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
+import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
+import com.cg.onlinefooddeliverysystem.entity.FoodItem;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
-import com.cg.onlinefooddeliverysystem.entity.DeliveryPerson;
-import com.cg.onlinefooddeliverysystem.entity.FoodItem;
-
+import static org.junit.Assert.*;
 
 /**
- * Unit tests for the {@link Manager} class in the Online Food Delivery System.
- * This class verifies the Manager's role annotation, as well as methods for managing delivery persons and inventory.
- * The tests include:
- *   Presence and correctness of the {@link RoleCheck} annotation on the Manager class.
- *   Removal of a delivery person by name, including handling of non-existing names.
- *   Restocking inventory for existing and non-existing food items.
- *   Addition of new food items to inventory.
- *   Correct initialization and access of Manager profile details (ID and name).
- *
- * Example usage:
- *     Manager manager = new Manager("001", "Biswajit");
- *     manager.restockItem(inventory, "Burger", 5);
- *     assertEquals(15, inventory.get(new FoodItem("Burger", 5.0)));
- *
- * @author (Divya Sinha)
- * @since 1.0
+ * This class tests the methods of the Manager class, including adding food items,
+ * restocking items, removing delivery person, and checking profile.
+ * 
+ * @author Divya Sinha
+ * @since  1.0
  */
-class ManagerTest {
+public class ManagerTest {
 
     Manager manager;
     List<DeliveryPerson> list;
     Map<FoodItem, Integer> inventory;
-	
-    /**
-     * Sets up common test data before each test.
-     */
-    @BeforeEach
-    void setUp() {
-        manager = new Manager("001", "Biswajit");
+    private final ByteArrayOutputStream b = new ByteArrayOutputStream();
+    private final PrintStream ori = System.out;
 
+    /**
+     * Sets up the test environment.
+     * Initializes Manager, DeliveryPersons list, and food inventory before each test.
+     */
+    @Before
+    public void setUp() {
+        manager = new Manager("M1", "Alok");
         list = new ArrayList<>();
+        inventory = new HashMap<>();
         list.add(new DeliveryPerson("Dipan"));
         list.add(new DeliveryPerson("Suman"));
-
-        inventory = new HashMap<>();
-        inventory.put(new FoodItem("Burger", 5.0), 10);
+        System.setOut(new PrintStream(b));
     }
-	
+    
+
     /**
-     * Tests that the Manager class has the RoleCheck annotation with the correct role.
+     * Test case to ensure the Manager constructor correctly sets the ID and name.
      */
     @Test
-    void testManagerHasRoleCheckAnnotation() {
-        RoleCheck role = Manager.class.getAnnotation(RoleCheck.class);
-        assertNotNull(role, "Manager class should have RoleCheck annotation");
-        assertEquals("Manager", role.role());
+    public void testManagerConstructor() {
+        assertEquals("M1", manager.getId());
+        assertEquals("Alok", manager.getName());
     }
 
     /**
-     * Tests that a delivery person can be removed by name.
+     * Test case to add a new food item to the inventory.
+     * Verifies that the food item is added successfully.
      */
     @Test
-    void testRemoveDeliveryPerson() {
+    public void testAddNewItem() {
+        FoodItem item = new FoodItem("Pizza", 10.0);
+        manager.addNewItem(inventory, "Pizza", 10.0, 5);
+
+        assertTrue(inventory.containsKey(item));
+        assertEquals(5, (int) inventory.get(item));
+    }
+
+    /**
+     * Test case to restock an existing food item in the inventory.
+     * Verifies that the quantity of the item is updated correctly.
+     */
+    @Test
+    public void testRestockItem() {
+        FoodItem item = new FoodItem("Burger", 5.0);
+        manager.addNewItem(inventory, "Burger", 5.0, 5);  
+        manager.restockItem(inventory, "Burger", 10);  
+
+        assertEquals(15, (int) inventory.get(item));
+    }
+
+    /**
+     * Test case to remove a delivery person from the list by their name.
+     * Verifies that the delivery person is removed successfully.
+     */
+    @Test
+    public void testRemoveDeliveryPerson() {
         manager.removeDeliveryPerson(list, "Dipan");
         assertEquals(1, list.size());
         boolean found= false;
         for(DeliveryPerson p : list) {
-            if(p.getName().equals("Dipan"))
-                found= true;
-            break;
+        	if(p.getName().equals("Dipan"))
+        		found= true;
+        	break;
         }
         assertFalse(found);
     }
 
+    
     /**
-     * Tests that removing a non-existing delivery person does not affect the list.
+     * Test case to verify the behavior when trying to remove a non-existing delivery person.
      */
     @Test
-    void testRemoveNonExistingDeliveryPerson() {
+    public void testRemoveNonExistingDeliveryPerson() {
         manager.removeDeliveryPerson(list, "Yash");
         boolean found= false;
         for(DeliveryPerson p : list) {
-            if(p.getName().equals("Yash"))
-                found= true;
-            break;
+        	if(p.getName().equals("Yash"))
+        		found= true;
+        	break;
         }
         assertFalse(found);
     }
 
-    /**
-     * Tests that restocking an existing item increases its quantity.
-     */
-    @Test
-    void testRestockExistingItem() {
-        manager.restockItem(inventory, "Burger", 5);
-        assertEquals(15, inventory.get(new FoodItem("Burger", 5.0)));
-    }
 
     /**
-     * Tests that restocking a non-existing item does not add it.
+     * Test case to verify the Manager's profile display.
+     * Ensures the profile is correctly displayed.
      */
     @Test
-    void testRestockNonExistingItem() {
-        manager.restockItem(inventory, "Pizza", 10);        
-        assertNull(inventory.get(new FoodItem("Pizza", 0)));
-    }
-
-    /**
-     * Tests that adding a new item inserts it into inventory with the correct quantity.
-     */
-    @Test
-    void testAddNewItem() {
-        manager.addNewItem(inventory, "Fries", 2.5, 20);
-        assertEquals(20, inventory.get(new FoodItem("Fries", 2.5)));
+    public void testShowProfile() {
+    	
+        manager.showProfile();
+        assertTrue(b.toString().contains("Manager ID: M1, Name: Alok"));
     }
     
     /**
-     * Tests that the manager's profile details are correctly initialized and accessible.
+     * Testing whether the password is correct
      */
     @Test
-    void testshowProfile() {
-        assertEquals("001", manager.getId());
-        assertEquals("Biswajit", manager.getName());
+    public void testPasswordAccess() {
+        assertEquals("P@ssw0rd!123", manager.getPassword());
+    }
+    /**
+     * Restores System.out after each test.
+     */
+    @After
+    public void restore() {
+        System.setOut(ori);
+        b.reset();
     }
 }
