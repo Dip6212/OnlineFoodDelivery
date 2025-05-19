@@ -17,7 +17,7 @@ public abstract class User {
 	// Name of user
 	protected String name;
 
-	public User() {
+	public User(String id, String name) {
 		setId(id);
 		setName(name);
 	}
