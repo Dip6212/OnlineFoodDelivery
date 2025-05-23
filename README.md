@@ -114,13 +114,14 @@ It also integrates advanced topics such as:
 
 ### ▶️ Steps
 
-1. Clone the repository:
+ Clone the repository and run
 
    ```bash
    git clone https://github.com/yourusername/online-food-delivery-java.git
    cd online-food-delivery-java
-2. mvn clean compile
-3. mvn exec:java -Dexec.mainClass="com.fooddelivery.Main"
+   mvn clean compile
+  mvn exec:java -Dexec.mainClass="com.fooddelivery.Main"
+ ```
 Console Output: 
 1. Register Customer
 2. Register Delivery Person
